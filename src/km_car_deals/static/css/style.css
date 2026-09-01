@@ -1,8 +1,8 @@
-/* ═══════════════════════════════════════════════════════
-   KM Car Deals — Professional Dashboard Design System
-   ═══════════════════════════════════════════════════════ */
+﻿/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   KM Car Deals ΓÇö Professional Dashboard Design System
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 
-/* ─── 1. Custom Properties ─────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 1. Custom Properties ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 :root {
   /* Brand */
   --brand-primary:   #f97316;
@@ -26,7 +26,7 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* ─── Dark Theme (default) ──────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ Dark Theme (default) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 [data-theme="dark"] {
   --bg:              #0a0f1a;
   --bg-2:            #0f1624;
@@ -72,7 +72,7 @@
   color-scheme: dark;
 }
 
-/* ─── Light Theme ───────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ Light Theme ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 [data-theme="light"] {
   --bg:              #f0f4f8;
   --bg-2:            #e8eef5;
@@ -118,7 +118,7 @@
   color-scheme: light;
 }
 
-/* ─── 2. Reset & Base ───────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 2. Reset & Base ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { height: 100%; font-size: 14px; scroll-behavior: smooth; }
@@ -145,13 +145,13 @@ body {
 /* Focus ring */
 :focus-visible { outline: 2px solid var(--brand-primary); outline-offset: 2px; border-radius: 4px; }
 
-/* ─── 3. App Shell ─────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 3. App Shell ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .app-shell {
   display: flex;
   min-height: 100vh;
 }
 
-/* ─── 4. Sidebar ───────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 4. Sidebar ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .sidebar {
   width: var(--sidebar-w);
   background: var(--sidebar-bg);
@@ -426,7 +426,7 @@ body {
   backdrop-filter: blur(2px);
 }
 
-/* ─── 5. Main Area ─────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 5. Main Area ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .main {
   flex: 1;
   margin-left: var(--sidebar-w);
@@ -436,7 +436,7 @@ body {
   min-height: 100vh;
 }
 
-/* ─── 6. Topbar ────────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 6. Topbar ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .topbar {
   position: sticky;
   top: 0;
@@ -521,7 +521,7 @@ body {
   border: 2px solid var(--bg);
 }
 
-/* ─── 7. Content Area ──────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 7. Content Area ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .content {
   flex: 1;
   padding: 28px;
@@ -559,7 +559,7 @@ body {
   flex-shrink: 0;
 }
 
-/* ─── 8. KPI Cards ─────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 8. KPI Cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -653,7 +653,7 @@ body {
 .kpi-trend.down { background: var(--danger-bg);  color: var(--danger); }
 .kpi-trend svg  { width: 11px; height: 11px; }
 
-/* ─── 9. Cards ─────────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 9. Cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -690,7 +690,7 @@ body {
   align-items: center;
 }
 
-/* ─── 10. Chart Cards ──────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 10. Chart Cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .charts-row {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
@@ -702,7 +702,7 @@ body {
 .chart-box { position: relative; height: 260px; }
 .chart-box canvas { max-height: 100%; }
 
-/* ─── 11. Activity Feed ────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 11. Activity Feed ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .bottom-row {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -807,7 +807,7 @@ body {
   transition: width .6s cubic-bezier(.4,0,.2,1);
 }
 
-/* ─── 12. Inventory ────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 12. Inventory ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .toolbar {
   display: flex;
   gap: 12px;
@@ -1027,7 +1027,7 @@ body {
   padding-top: 2px;
 }
 
-/* ─── 13. Table ────────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 13. Table ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .table-wrap { overflow-x: auto; }
 
 table {
@@ -1086,7 +1086,7 @@ tbody tr:hover td { background: var(--surface-2); }
 .avatar-name { font-weight: 600; font-size: 13.5px; }
 .avatar-sub  { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
 
-/* ─── 14. Badges ───────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 14. Badges ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -1125,7 +1125,7 @@ tbody tr:hover td { background: var(--surface-2); }
   color: var(--text-2);
 }
 
-/* ─── 15. Buttons ──────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 15. Buttons ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1172,7 +1172,7 @@ tbody tr:hover td { background: var(--surface-2); }
 .btn-icon { padding: 8px; border-radius: var(--radius-sm); }
 .btn:disabled { opacity: .45; cursor: not-allowed; transform: none !important; }
 
-/* ─── 16. Forms ────────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 16. Forms ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -1322,7 +1322,7 @@ textarea.input { resize: vertical; min-height: 90px; }
   transition: width .4s ease;
 }
 
-/* ─── 17. Analytics Section ────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 17. Analytics Section ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .analytics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1340,7 +1340,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 }
 .funnel-label span:last-child { color: var(--text-muted); }
 
-/* ─── 18. Empty States ─────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 18. Empty States ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .empty-state {
   text-align: center;
   padding: 64px 24px;
@@ -1408,7 +1408,7 @@ textarea.input { resize: vertical; min-height: 90px; }
   font-size: 13.5px;
 }
 
-/* ─── 19. Toasts ───────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 19. Toasts ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .toast-stack {
   position: fixed;
   top: 24px;
@@ -1483,7 +1483,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 }
 .toast.removing { animation: toastOut .2s ease forwards; }
 
-/* ─── 20. Modal ────────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 20. Modal ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -1551,7 +1551,7 @@ textarea.input { resize: vertical; min-height: 90px; }
   flex-shrink: 0;
 }
 
-/* ─── 21. API Docs Section ─────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 21. API Docs Section ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .docs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 .docs-card {
   background: var(--surface);
@@ -1614,7 +1614,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 .endpoint-path { flex: 1; color: var(--text-2); }
 .endpoint-desc { color: var(--text-muted); font-size: 12px; font-family: var(--font-sans); }
 
-/* ─── 22. Utility ──────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 22. Utility ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 .flex          { display: flex; }
 .flex-col      { flex-direction: column; }
 .items-center  { align-items: center; }
@@ -1679,7 +1679,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 }
 .or-divider::before, .or-divider::after { content: ''; flex: 1; border-top: 1px solid var(--border); }
 
-/* ─── 23. Responsive ───────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 23. Responsive ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 @media (max-width: 1100px) {
   .charts-row { grid-template-columns: 1fr; }
   .bottom-row { grid-template-columns: 1fr; }
@@ -1716,30 +1716,9 @@ textarea.input { resize: vertical; min-height: 90px; }
   .filter-pills { gap: 4px; }
 }
 
-/* ─── 24. Print ────────────────────────────────────────── */
+/* ΓöÇΓöÇΓöÇ 24. Print ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 @media print {
   .sidebar, .topbar, .toast-stack { display: none !important; }
   .main { margin-left: 0; }
   .content { padding: 0; }
 }
-
-/* ── Wizard steps ── */
-.wizard-steps{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;width:fit-content;}
-.wstep{padding:10px 24px;font-size:13px;font-weight:600;color:var(--text-muted);background:var(--surface);border-right:1px solid var(--border);}
-.wstep:last-child{border-right:none;}
-.wstep.active{background:var(--brand-primary);color:#fff;}
-
-/* ── Approval queue ── */
-.badge-AI_DRAFT{background:rgba(14,165,233,.12);color:#0ea5e9;}
-.badge-EXTRACTED{background:rgba(99,102,241,.12);color:#6366f1;}
-.badge-NEEDS_REVIEW{background:var(--warning-bg);color:var(--warning);}
-.badge-DEALER_APPROVED{background:var(--success-bg);color:var(--success);}
-.badge-PUBLISHED{background:rgba(249,115,22,.15);color:var(--brand-primary);}
-.badge-CLOSED_LOST,.badge-CLOSED_WON,.badge-INTERESTED,.badge-QUALIFIED,.badge-NEGOTIATING,.badge-FOLLOW_UP,.badge-BOOKED,.badge-PURCHASED,.badge-NOT_INTERESTED{background:var(--surface-3);color:var(--text-2);}
-
-/* ── Success btn ── */
-.btn-success{background:var(--success-bg);color:var(--success);border-color:transparent;}
-.btn-success:hover{filter:brightness(1.08);}
-
-/* ── Settings form ── */
-.sett-field{margin-bottom:0;}
