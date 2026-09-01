@@ -1,8 +1,8 @@
-﻿/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-   KM Car Deals ΓÇö Professional Dashboard Design System
-   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
+﻿/* =
+   KM Car Deals = Professional Dashboard Design System
+   = */
 
-/* ΓöÇΓöÇΓöÇ 1. Custom Properties ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 1. Custom Properties = */
 :root {
   /* Brand */
   --brand-primary:   #f97316;
@@ -26,7 +26,7 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* ΓöÇΓöÇΓöÇ Dark Theme (default) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = Dark Theme (default) = */
 [data-theme="dark"] {
   --bg:              #0a0f1a;
   --bg-2:            #0f1624;
@@ -72,7 +72,7 @@
   color-scheme: dark;
 }
 
-/* ΓöÇΓöÇΓöÇ Light Theme ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = Light Theme = */
 [data-theme="light"] {
   --bg:              #f0f4f8;
   --bg-2:            #e8eef5;
@@ -118,7 +118,7 @@
   color-scheme: light;
 }
 
-/* ΓöÇΓöÇΓöÇ 2. Reset & Base ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 2. Reset & Base = */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { height: 100%; font-size: 14px; scroll-behavior: smooth; }
@@ -145,13 +145,13 @@ body {
 /* Focus ring */
 :focus-visible { outline: 2px solid var(--brand-primary); outline-offset: 2px; border-radius: 4px; }
 
-/* ΓöÇΓöÇΓöÇ 3. App Shell ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 3. App Shell = */
 .app-shell {
   display: flex;
   min-height: 100vh;
 }
 
-/* ΓöÇΓöÇΓöÇ 4. Sidebar ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 4. Sidebar = */
 .sidebar {
   width: var(--sidebar-w);
   background: var(--sidebar-bg);
@@ -426,7 +426,7 @@ body {
   backdrop-filter: blur(2px);
 }
 
-/* ΓöÇΓöÇΓöÇ 5. Main Area ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 5. Main Area = */
 .main {
   flex: 1;
   margin-left: var(--sidebar-w);
@@ -436,7 +436,7 @@ body {
   min-height: 100vh;
 }
 
-/* ΓöÇΓöÇΓöÇ 6. Topbar ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 6. Topbar = */
 .topbar {
   position: sticky;
   top: 0;
@@ -521,7 +521,7 @@ body {
   border: 2px solid var(--bg);
 }
 
-/* ΓöÇΓöÇΓöÇ 7. Content Area ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 7. Content Area = */
 .content {
   flex: 1;
   padding: 28px;
@@ -559,7 +559,7 @@ body {
   flex-shrink: 0;
 }
 
-/* ΓöÇΓöÇΓöÇ 8. KPI Cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 8. KPI Cards = */
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -653,7 +653,7 @@ body {
 .kpi-trend.down { background: var(--danger-bg);  color: var(--danger); }
 .kpi-trend svg  { width: 11px; height: 11px; }
 
-/* ΓöÇΓöÇΓöÇ 9. Cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 9. Cards = */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -690,7 +690,7 @@ body {
   align-items: center;
 }
 
-/* ΓöÇΓöÇΓöÇ 10. Chart Cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 10. Chart Cards = */
 .charts-row {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
@@ -702,7 +702,7 @@ body {
 .chart-box { position: relative; height: 260px; }
 .chart-box canvas { max-height: 100%; }
 
-/* ΓöÇΓöÇΓöÇ 11. Activity Feed ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 11. Activity Feed = */
 .bottom-row {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -807,7 +807,7 @@ body {
   transition: width .6s cubic-bezier(.4,0,.2,1);
 }
 
-/* ΓöÇΓöÇΓöÇ 12. Inventory ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 12. Inventory = */
 .toolbar {
   display: flex;
   gap: 12px;
@@ -1027,7 +1027,7 @@ body {
   padding-top: 2px;
 }
 
-/* ΓöÇΓöÇΓöÇ 13. Table ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 13. Table = */
 .table-wrap { overflow-x: auto; }
 
 table {
@@ -1086,7 +1086,7 @@ tbody tr:hover td { background: var(--surface-2); }
 .avatar-name { font-weight: 600; font-size: 13.5px; }
 .avatar-sub  { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
 
-/* ΓöÇΓöÇΓöÇ 14. Badges ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 14. Badges = */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -1125,7 +1125,7 @@ tbody tr:hover td { background: var(--surface-2); }
   color: var(--text-2);
 }
 
-/* ΓöÇΓöÇΓöÇ 15. Buttons ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 15. Buttons = */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1172,7 +1172,7 @@ tbody tr:hover td { background: var(--surface-2); }
 .btn-icon { padding: 8px; border-radius: var(--radius-sm); }
 .btn:disabled { opacity: .45; cursor: not-allowed; transform: none !important; }
 
-/* ΓöÇΓöÇΓöÇ 16. Forms ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 16. Forms = */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -1322,7 +1322,7 @@ textarea.input { resize: vertical; min-height: 90px; }
   transition: width .4s ease;
 }
 
-/* ΓöÇΓöÇΓöÇ 17. Analytics Section ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 17. Analytics Section = */
 .analytics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1340,7 +1340,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 }
 .funnel-label span:last-child { color: var(--text-muted); }
 
-/* ΓöÇΓöÇΓöÇ 18. Empty States ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 18. Empty States = */
 .empty-state {
   text-align: center;
   padding: 64px 24px;
@@ -1408,7 +1408,7 @@ textarea.input { resize: vertical; min-height: 90px; }
   font-size: 13.5px;
 }
 
-/* ΓöÇΓöÇΓöÇ 19. Toasts ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 19. Toasts = */
 .toast-stack {
   position: fixed;
   top: 24px;
@@ -1483,7 +1483,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 }
 .toast.removing { animation: toastOut .2s ease forwards; }
 
-/* ΓöÇΓöÇΓöÇ 20. Modal ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 20. Modal = */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -1551,7 +1551,7 @@ textarea.input { resize: vertical; min-height: 90px; }
   flex-shrink: 0;
 }
 
-/* ΓöÇΓöÇΓöÇ 21. API Docs Section ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 21. API Docs Section = */
 .docs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 .docs-card {
   background: var(--surface);
@@ -1614,7 +1614,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 .endpoint-path { flex: 1; color: var(--text-2); }
 .endpoint-desc { color: var(--text-muted); font-size: 12px; font-family: var(--font-sans); }
 
-/* ΓöÇΓöÇΓöÇ 22. Utility ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 22. Utility = */
 .flex          { display: flex; }
 .flex-col      { flex-direction: column; }
 .items-center  { align-items: center; }
@@ -1679,7 +1679,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 }
 .or-divider::before, .or-divider::after { content: ''; flex: 1; border-top: 1px solid var(--border); }
 
-/* ΓöÇΓöÇΓöÇ 23. Responsive ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 23. Responsive = */
 @media (max-width: 1100px) {
   .charts-row { grid-template-columns: 1fr; }
   .bottom-row { grid-template-columns: 1fr; }
@@ -1716,7 +1716,7 @@ textarea.input { resize: vertical; min-height: 90px; }
   .filter-pills { gap: 4px; }
 }
 
-/* ΓöÇΓöÇΓöÇ 24. Print ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* = 24. Print = */
 @media print {
   .sidebar, .topbar, .toast-stack { display: none !important; }
   .main { margin-left: 0; }
