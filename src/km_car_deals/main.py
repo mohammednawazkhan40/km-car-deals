@@ -12,6 +12,7 @@ from fastapi.staticfiles import StaticFiles
 from km_car_deals.core.config import settings
 from km_car_deals.core.logging import setup_logging
 from km_car_deals.api.routes import customers, intake, ops, public, vehicles
+from km_car_deals.api.routes import approval, settings as settings_routes
 from km_car_deals.api.webhooks import whatsapp
 
 setup_logging(settings.LOG_LEVEL, json_output=settings.APP_ENV == "production")
@@ -39,6 +40,8 @@ app.include_router(vehicles.router, prefix=settings.API_PREFIX)
 app.include_router(intake.router, prefix=settings.API_PREFIX)
 app.include_router(customers.router, prefix=settings.API_PREFIX)
 app.include_router(ops.router, prefix=settings.API_PREFIX)
+app.include_router(approval.router, prefix=settings.API_PREFIX)
+app.include_router(settings_routes.router, prefix=settings.API_PREFIX)
 
 # Webhooks root (no /api/v1 prefix)
 app.include_router(whatsapp.router)
@@ -63,6 +66,15 @@ def root():
     if index.exists():
         return FileResponse(str(index))
     return {"service": settings.APP_NAME, "status": "ok", "docs": "/docs"}
+
+
+@app.get("/catalog")
+def catalog():
+    from fastapi.responses import FileResponse
+    page = _STATIC_DIR / "catalog.html"
+    if page.exists():
+        return FileResponse(str(page))
+    return {"error": "Catalog page not found"}
 
 
 @app.get("/health")

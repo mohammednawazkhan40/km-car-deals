@@ -94,6 +94,22 @@ class Settings(BaseSettings):
     PUBLIC_API_REQUIRES_KEY: bool = False
     PUBLIC_API_KEY: str = ""
 
+    # --- Business / Dealer defaults (seeded into BusinessSettings on first run) ---
+    DEALER_NAME: str = "KM Car Deals"
+    DEALER_TAGLINE: str = "Your Trusted Pre-Owned Car Destination"
+    DEALER_ADDRESS_LINE1: str = "Opp. Hyundai Showroom, Humnabad Road"
+    DEALER_ADDRESS_LINE2: str = "Kapnoor"
+    DEALER_CITY: str = "Kalaburagi"
+    DEALER_STATE: str = "Karnataka"
+    DEALER_PINCODE: str = "585104"
+    DEALER_PHONE_PRIMARY: str = ""
+    DEALER_PHONE_SECONDARY: str = ""
+    DEALER_WHATSAPP: str = ""
+    DEALER_EMAIL: str = ""
+    DEALER_WEBSITE: str = "www.kmcardeals.com"
+    DEALER_GOOGLE_MAPS_URL: str = ""
+    DEALER_AUTO_PUBLISH: bool = False
+
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
     def _split_origins(cls, v: object) -> object:

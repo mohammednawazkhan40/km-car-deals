@@ -104,6 +104,25 @@ class Vehicle(Base, TimestampMixin):
         String(32), default=VehicleStatus.NEW.value, index=True
     )
 
+    # ---- Intake / workflow fields ----
+    referral: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    intake_source: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    dealer_name: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
+    dealer_phone: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    dealer_city: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
+    intake_date: Mapped[Optional[date]] = mapped_column(Date, nullable=True)
+
+    # ---- Approval workflow fields ----
+    approved_by: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    approved_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    rejected_by: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    rejected_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    rejection_reason: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    published_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+
+    # ---- AI extraction confidence summary ----
+    ai_confidence_summary: Mapped[Optional[dict]] = mapped_column(JsonType, nullable=True)
+
     # Relationships
     facts: Mapped[list["VehicleFact"]] = relationship(
         back_populates="vehicle", cascade="all, delete-orphan", lazy="selectin"
@@ -297,4 +316,46 @@ class UploadedFileRecord(Base, TimestampMixin):
     classification: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     doc_type: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     intake_batch: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+
+
+class BusinessSettings(Base, TimestampMixin):
+    """Configurable dealer/business settings — never hard-coded in application code."""
+
+    __tablename__ = "business_settings"
+
+    setting_id: Mapped[str] = mapped_column(String(64), primary_key=True, default=gen_uuid)
+    business_name: Mapped[str] = mapped_column(String(256), default="KM Car Deals")
+    tagline: Mapped[Optional[str]] = mapped_column(String(256), nullable=True)
+    address_line1: Mapped[Optional[str]] = mapped_column(String(256), nullable=True)
+    address_line2: Mapped[Optional[str]] = mapped_column(String(256), nullable=True)
+    city: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
+    state: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
+    pincode: Mapped[Optional[str]] = mapped_column(String(16), nullable=True)
+    phone_primary: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    phone_secondary: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    whatsapp_number: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
+    email: Mapped[Optional[str]] = mapped_column(String(256), nullable=True)
+    website_url: Mapped[Optional[str]] = mapped_column(String(256), nullable=True)
+    google_maps_url: Mapped[Optional[str]] = mapped_column(String(512), nullable=True)
+    auto_publish: Mapped[bool] = mapped_column(Boolean, default=False)
+    default_location: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
+    currency: Mapped[str] = mapped_column(String(8), default="INR")
+    extra: Mapped[Optional[dict]] = mapped_column(JsonType, nullable=True)
+
+
+class AppAuditLog(Base, TimestampMixin):
+    """Application-wide audit log for all AI and dealer actions."""
+
+    __tablename__ = "app_audit_logs"
+
+    log_id: Mapped[str] = mapped_column(String(64), primary_key=True, default=gen_uuid)
+    actor: Mapped[Optional[str]] = mapped_column(String(128), nullable=True)
+    action: Mapped[str] = mapped_column(String(128), index=True)
+    entity_type: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    entity_id: Mapped[Optional[str]] = mapped_column(String(64), nullable=True, index=True)
+    before_data: Mapped[Optional[dict]] = mapped_column(JsonType, nullable=True)
+    after_data: Mapped[Optional[dict]] = mapped_column(JsonType, nullable=True)
+    ip_address: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
+    user_agent: Mapped[Optional[str]] = mapped_column(String(256), nullable=True)
+    notes: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
 

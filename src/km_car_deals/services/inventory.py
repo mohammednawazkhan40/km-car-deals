@@ -398,3 +398,233 @@ def public_vehicle_out(vehicle: Vehicle) -> dict:
         "availability": vehicle.status,
         "location": vehicle.location,
     }
+
+
+# ---------------------------------------------------------------------------
+# Duplicate detection
+# ---------------------------------------------------------------------------
+
+def find_duplicate_by_registration(
+    db: Session, registration_number: str
+) -> Optional[Vehicle]:
+    """Return an existing vehicle with the same registration number, if any."""
+    if not registration_number:
+        return None
+    clean = _clean_regno(registration_number)
+    return db.execute(
+        select(Vehicle).where(Vehicle.registration_number == clean)
+    ).scalars().first()
+
+
+def find_possible_duplicates(
+    db: Session,
+    registration_number: Optional[str] = None,
+    chassis_number: Optional[str] = None,
+    manufacturer: Optional[str] = None,
+    model: Optional[str] = None,
+    year: Optional[int] = None,
+) -> List[Vehicle]:
+    """Return vehicles that may be duplicates based on multiple weak signals."""
+    candidates: List[Vehicle] = []
+    # Strongest signal: exact registration number
+    if registration_number:
+        v = find_duplicate_by_registration(db, registration_number)
+        if v:
+            return [v]
+    # Medium signal: chassis number
+    if chassis_number:
+        v = db.execute(
+            select(Vehicle).where(Vehicle.chassis_number == chassis_number.strip())
+        ).scalars().first()
+        if v:
+            candidates.append(v)
+    # Weak signal: make + model + year combination
+    if manufacturer and model and year:
+        stmt = (
+            select(Vehicle)
+            .where(
+                Vehicle.manufacturer.ilike(f"%{manufacturer}%"),
+                Vehicle.model.ilike(f"%{model}%"),
+                Vehicle.manufacturing_year == year,
+            )
+            .limit(5)
+        )
+        candidates.extend(db.execute(stmt).scalars().all())
+    # Deduplicate by vehicle_id
+    seen: set[str] = set()
+    result: List[Vehicle] = []
+    for v in candidates:
+        if v.vehicle_id not in seen:
+            seen.add(v.vehicle_id)
+            result.append(v)
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Vehicle description generation (deterministic fallback; AI when enabled)
+# ---------------------------------------------------------------------------
+
+def generate_description(vehicle: Vehicle) -> str:
+    """Generate a professional listing description from verified vehicle data.
+
+    Uses AI if enabled, deterministic template otherwise. Never invents data.
+    """
+    from km_car_deals.ai.provider import ai_provider
+    from km_car_deals.ai.prompts import VEHICLE_DESCRIPTION_PROMPT
+
+    # Build a compact verified data string
+    parts = []
+    if vehicle.manufacturing_year:
+        parts.append(f"Year: {vehicle.manufacturing_year}")
+    if vehicle.manufacturer:
+        parts.append(f"Make: {vehicle.manufacturer}")
+    if vehicle.model:
+        parts.append(f"Model: {vehicle.model}")
+    if vehicle.variant:
+        parts.append(f"Variant: {vehicle.variant}")
+    if vehicle.fuel_type:
+        parts.append(f"Fuel: {vehicle.fuel_type}")
+    if vehicle.transmission:
+        parts.append(f"Transmission: {vehicle.transmission}")
+    if vehicle.vehicle_color:
+        parts.append(f"Colour: {vehicle.vehicle_color}")
+    if vehicle.mileage_km:
+        parts.append(f"Mileage: {vehicle.mileage_km:,} km")
+    if vehicle.owner_count:
+        parts.append(f"Owners: {vehicle.owner_count}")
+    if vehicle.location:
+        parts.append(f"Location: {vehicle.location}")
+    if vehicle.selling_price:
+        parts.append(f"Price: ₹{vehicle.selling_price:,.0f}")
+    else:
+        parts.append("Price: on request")
+
+    vehicle_data = "\n".join(parts)
+    prompt = VEHICLE_DESCRIPTION_PROMPT.format(vehicle_data=vehicle_data)
+
+    ai_text = ai_provider.complete_llm(prompt)
+    if ai_text and len(ai_text) > 20:
+        return ai_text.strip()
+
+    # Deterministic fallback
+    name = vehicle.vehicle_name or f"{vehicle.manufacturer or ''} {vehicle.model or ''}".strip()
+    fuel = vehicle.fuel_type or ""
+    trans = vehicle.transmission or ""
+    year = str(vehicle.manufacturing_year) if vehicle.manufacturing_year else ""
+    km_str = f"{vehicle.mileage_km:,} km driven, " if vehicle.mileage_km else ""
+    price_str = (
+        f"Priced at ₹{vehicle.selling_price:,.0f}."
+        if vehicle.selling_price
+        else "Price on request."
+    )
+    desc = (
+        f"Well-maintained pre-owned {name} available at KM Car Deals"
+        f"{', ' + year if year else ''}. "
+        f"{fuel.title()} engine with {trans.title()} transmission. "
+        f"{km_str}"
+        f"{price_str} "
+        f"Contact KM Car Deals for availability, inspection and test drive."
+    )
+    return desc
+
+
+# ---------------------------------------------------------------------------
+# Approval workflow
+# ---------------------------------------------------------------------------
+
+def approve_vehicle(
+    db: Session, vehicle_id: str, approved_by: str = "admin"
+) -> Vehicle:
+    """Mark a vehicle as DEALER_APPROVED. Generates description if absent."""
+    from datetime import datetime, timezone
+    from km_car_deals.services.audit import log_action
+
+    vehicle = get_vehicle(db, vehicle_id)
+    if not vehicle:
+        raise KeyError("Vehicle not found")
+    old_status = vehicle.status
+    if not vehicle.description:
+        vehicle.description = generate_description(vehicle)
+    vehicle.status = "DEALER_APPROVED"
+    vehicle.approved_by = approved_by
+    vehicle.approved_at = datetime.now(timezone.utc)
+    record_status(db, vehicle, old_status, VehicleStatus("DEALER_APPROVED"), approved_by, "Dealer approved")
+    log_action(db, actor=approved_by, action="VEHICLE_APPROVED",
+               entity_type="Vehicle", entity_id=vehicle_id,
+               before_data={"status": old_status},
+               after_data={"status": "DEALER_APPROVED"})
+    db.flush()
+    return vehicle
+
+
+def reject_vehicle(
+    db: Session, vehicle_id: str, reason: str, rejected_by: str = "admin"
+) -> Vehicle:
+    """Reject a vehicle back to NEEDS_REVIEW with a reason."""
+    from datetime import datetime, timezone
+    from km_car_deals.services.audit import log_action
+
+    vehicle = get_vehicle(db, vehicle_id)
+    if not vehicle:
+        raise KeyError("Vehicle not found")
+    old_status = vehicle.status
+    vehicle.status = "NEEDS_REVIEW"
+    vehicle.rejected_by = rejected_by
+    vehicle.rejected_at = datetime.now(timezone.utc)
+    vehicle.rejection_reason = reason
+    record_status(db, vehicle, old_status, VehicleStatus("NEEDS_REVIEW"), rejected_by, f"Rejected: {reason}")
+    log_action(db, actor=rejected_by, action="VEHICLE_REJECTED",
+               entity_type="Vehicle", entity_id=vehicle_id,
+               before_data={"status": old_status},
+               after_data={"status": "NEEDS_REVIEW", "reason": reason})
+    db.flush()
+    return vehicle
+
+
+def publish_vehicle(
+    db: Session, vehicle_id: str, published_by: str = "admin"
+) -> Vehicle:
+    """Publish a DEALER_APPROVED vehicle to PUBLISHED (website catalog)."""
+    from datetime import datetime, timezone
+    from km_car_deals.services.audit import log_action
+
+    vehicle = get_vehicle(db, vehicle_id)
+    if not vehicle:
+        raise KeyError("Vehicle not found")
+    if vehicle.status not in ("DEALER_APPROVED", "AVAILABLE", "READY_FOR_SALE"):
+        raise ValueError(f"Vehicle must be approved before publishing (current: {vehicle.status})")
+    old_status = vehicle.status
+    vehicle.status = "PUBLISHED"
+    vehicle.published_at = datetime.now(timezone.utc)
+    if not vehicle.description:
+        vehicle.description = generate_description(vehicle)
+    record_status(db, vehicle, old_status, VehicleStatus("PUBLISHED"), published_by, "Published to website catalog")
+    log_action(db, actor=published_by, action="VEHICLE_PUBLISHED",
+               entity_type="Vehicle", entity_id=vehicle_id,
+               before_data={"status": old_status},
+               after_data={"status": "PUBLISHED"})
+    db.flush()
+    return vehicle
+
+
+def reprocess_vehicle(
+    db: Session, vehicle_id: str, actor: str = "admin"
+) -> Vehicle:
+    """Reset a vehicle back to AI_DRAFT for re-processing."""
+    from km_car_deals.services.audit import log_action
+
+    vehicle = get_vehicle(db, vehicle_id)
+    if not vehicle:
+        raise KeyError("Vehicle not found")
+    old_status = vehicle.status
+    vehicle.status = "AI_DRAFT"
+    vehicle.rejected_by = None
+    vehicle.rejected_at = None
+    vehicle.rejection_reason = None
+    record_status(db, vehicle, old_status, VehicleStatus("AI_DRAFT"), actor, "Reprocessing requested")
+    log_action(db, actor=actor, action="VEHICLE_REPROCESS",
+               entity_type="Vehicle", entity_id=vehicle_id,
+               before_data={"status": old_status},
+               after_data={"status": "AI_DRAFT"})
+    db.flush()
+    return vehicle

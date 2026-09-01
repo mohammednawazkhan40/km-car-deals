@@ -70,3 +70,41 @@ Question: {question}
 Vehicle records:
 {records}
 """
+
+
+VEHICLE_DESCRIPTION_PROMPT = """\
+You are writing a professional vehicle listing description for KM Car Deals,
+a trusted pre-owned car dealership in Kalaburagi, Karnataka.
+
+Rules:
+- Write in English, 3-4 sentences max.
+- Use ONLY the verified facts provided below. NEVER invent details.
+- Do NOT claim accident-free, excellent condition, full service history,
+  original paint, or single owner UNLESS explicitly verified in the data.
+- Mention fuel type, transmission, year, and mileage if available.
+- End with a call-to-action mentioning KM Car Deals.
+
+Vehicle data (verified):
+{vehicle_data}
+
+If price is available: mention it. If not, say "Price on request."
+"""
+
+FOLLOWUP_MESSAGE_PROMPT = """\
+You are a helpful sales assistant at KM Car Deals. Generate a polite,
+professional WhatsApp follow-up message for the customer below.
+
+Customer: {customer_name}
+Interested in: {vehicle_interest}
+Current lead status: {lead_status}
+Vehicle availability: {vehicle_availability}
+Last contact: {last_contact}
+Notes: {notes}
+
+Rules:
+- Keep it short (2-3 sentences).
+- Be warm and professional.
+- If vehicle is sold/unavailable, suggest they contact us for alternatives.
+- Never pressure the customer.
+- End with: "- KM Car Deals"
+"""

@@ -22,6 +22,8 @@ async def intake_vehicle(
     seller_whatsapp: Optional[str] = Form(None),
     process_images: bool = Form(False),
     background: str = Form("premium_showroom"),
+    referral: Optional[str] = Form(None),
+    intake_source: Optional[str] = Form("ADMIN_UI"),
     db: Session = Depends(get_db),
 ):
     """Receive 1-10 photos, RC image/PDF, other docs, and a text message.
@@ -41,7 +43,8 @@ async def intake_vehicle(
     agent = CarIntakeAgent(db)
     try:
         vehicle, notices = agent.run_intake(
-            file_items, message=message, seller_whatsapp=seller_whatsapp
+            file_items, message=message, seller_whatsapp=seller_whatsapp,
+            referral=referral, intake_source=intake_source,
         )
     finally:
         pass

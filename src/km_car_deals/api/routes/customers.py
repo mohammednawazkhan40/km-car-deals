@@ -111,3 +111,67 @@ def customer_handoffs(customer_id: str, db: Session = Depends(get_db)):
             select(HumanHandoffTask).where(HumanHandoffTask.customer_id == customer_id)
         ).scalars()
     )
+
+
+@router.post("/{customer_id}/followup-message")
+def generate_followup_message(customer_id: str, db: Session = Depends(get_db)):
+    """Generate an AI follow-up WhatsApp message for a customer."""
+    from km_car_deals.ai.provider import ai_provider
+    from km_car_deals.ai.prompts import FOLLOWUP_MESSAGE_PROMPT
+    from km_car_deals.services import inventory as inv_svc
+
+    c = db.get(Customer, customer_id)
+    if not c:
+        raise HTTPException(404, "Customer not found")
+
+    # Find their most recent interest vehicle
+    vehicle_name = c.preferred_vehicle or "a vehicle"
+    vehicle_status = "unknown"
+    if c.interests:
+        latest = sorted(c.interests, key=lambda x: x.created_at, reverse=True)[0]
+        v = inv_svc.get_vehicle(db, latest.vehicle_id)
+        if v:
+            vehicle_name = v.vehicle_name or vehicle_name
+            vehicle_status = v.status
+
+    last_contact = "recently"
+    if c.last_outbound_at:
+        last_contact = c.last_outbound_at.strftime("%d %b %Y")
+
+    prompt = FOLLOWUP_MESSAGE_PROMPT.format(
+        customer_name=c.name or "Customer",
+        vehicle_interest=vehicle_name,
+        lead_status=c.lead_status,
+        vehicle_availability=vehicle_status,
+        last_contact=last_contact,
+        notes=c.notes or "",
+    )
+    ai_msg = ai_provider.complete_llm(prompt)
+    if not ai_msg or len(ai_msg) < 10:
+        # deterministic fallback
+        ai_msg = (
+            f"Hello {c.name or 'there'}, this is KM Car Deals following up on your interest "
+            f"in {vehicle_name}. Please let us know if you'd like to schedule a visit or test drive. "
+            f"- KM Car Deals"
+        )
+    return {"customer_id": customer_id, "message": ai_msg.strip()}
+
+
+@router.patch("/{customer_id}/lead-status")
+def update_lead_status(
+    customer_id: str,
+    status: str,
+    notes: Optional[str] = None,
+    db: Session = Depends(get_db),
+):
+    """Update a customer's lead pipeline status."""
+    c = db.get(Customer, customer_id)
+    if not c:
+        raise HTTPException(404, "Customer not found")
+    old = c.lead_status
+    c.lead_status = status.upper()
+    if notes:
+        c.notes = notes
+    crm.add_interaction(db, customer_id, "NOTE", summary=f"Lead status changed: {old} → {c.lead_status}")
+    db.commit()
+    return {"customer_id": customer_id, "lead_status": c.lead_status}

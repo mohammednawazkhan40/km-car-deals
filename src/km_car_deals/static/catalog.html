@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>KM Car Deals — Pre-Owned Cars Kalaburagi</title>
+  <meta name="description" content="Buy certified pre-owned cars in Kalaburagi. KM Car Deals — trusted multi-brand used car dealership."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--brand:#f97316;--brand2:#ea580c;--dark:#0a0f1a;--text:#1e293b;--text2:#475569;--muted:#94a3b8;--border:#e2e8f0;--bg:#f8fafc;--white:#fff;--radius:14px;--shadow:0 2px 12px rgba(0,0,0,.08);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;}
+
+    /* HEADER */
+    .site-header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;}
+    .header-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:70px;display:flex;align-items:center;gap:20px;}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;}
+    .logo-mark{width:36px;height:36px;background:linear-gradient(135deg,#f97316,#ea580c);border-radius:8px;display:grid;place-items:center;}
+    .logo-mark svg{width:20px;height:20px;}
+    .header-nav{margin-left:auto;display:flex;align-items:center;gap:10px;}
+    .btn-wa{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:8px;}
+    .btn-wa:hover{filter:brightness(1.08);}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,#0a0f1a 0%,#1a2540 100%);color:#fff;padding:60px 20px;}
+    .hero-inner{max-width:1200px;margin:0 auto;}
+    .hero h1{font-size:clamp(28px,5vw,48px);font-weight:900;letter-spacing:-.5px;margin-bottom:12px;}
+    .hero h1 span{color:var(--brand);}
+    .hero p{font-size:17px;color:#94a3b8;margin-bottom:32px;}
+    .search-bar{display:flex;gap:10px;max-width:600px;flex-wrap:wrap;}
+    .search-bar input{flex:1;min-width:200px;border:none;border-radius:10px;padding:13px 16px;font:inherit;font-size:14px;outline:none;}
+    .search-bar select{border:none;border-radius:10px;padding:13px 14px;font:inherit;font-size:14px;background:#fff;cursor:pointer;outline:none;}
+    .search-bar button{background:var(--brand);color:#fff;border:none;border-radius:10px;padding:13px 22px;font:inherit;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;}
+    .stats-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap;}
+    .stat{display:flex;flex-direction:column;}
+    .stat strong{font-size:28px;font-weight:900;color:#fff;}
+    .stat span{font-size:13px;color:#94a3b8;}
+
+    /* FILTERS */
+    .filter-bar{background:var(--white);border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:70px;z-index:9;}
+    .filter-inner{max-width:1200px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+    .fpill{padding:7px 16px;border-radius:999px;border:1px solid var(--border);background:var(--white);font-size:13px;font-weight:600;cursor:pointer;transition:.15s;color:var(--text2);white-space:nowrap;}
+    .fpill:hover,.fpill.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+    .filter-count{margin-left:auto;font-size:13px;color:var(--muted);white-space:nowrap;}
+
+    /* GRID */
+    .catalog-section{max-width:1200px;margin:0 auto;padding:32px 20px;}
+    .catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+
+    /* VEHICLE CARD */
+    .vcard{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column;}
+    .vcard:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.12);}
+    .vcard-photo{height:210px;background:#eef2f7;position:relative;overflow:hidden;}
+    .vcard-photo img{width:100%;height:100%;object-fit:cover;transition:.4s;}
+    .vcard:hover .vcard-photo img{transform:scale(1.04);}
+    .vcard-photo .no-photo{display:grid;place-items:center;height:100%;font-size:48px;}
+    .photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 50%);pointer-events:none;}
+    .vbadge{position:absolute;top:12px;left:12px;background:rgba(10,15,26,.8);color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;letter-spacing:.4px;backdrop-filter:blur(4px);}
+    .vcard-body{padding:18px 20px 20px;flex:1;display:flex;flex-direction:column;}
+    .vname{font-size:16px;font-weight:800;margin-bottom:2px;line-height:1.3;}
+    .vstockid{font-size:11.5px;color:var(--muted);font-family:monospace;margin-bottom:12px;}
+    .vspecs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;padding:12px;background:#f8fafc;border-radius:10px;}
+    .vspec{display:flex;flex-direction:column;gap:2px;}
+    .vspec-k{font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;}
+    .vspec-v{font-size:13px;font-weight:700;color:var(--text);}
+    .vprice{font-size:22px;font-weight:900;color:var(--brand);margin-bottom:12px;letter-spacing:-.5px;}
+    .vdesc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:14px;flex:1;}
+    .vactions{display:flex;gap:10px;}
+    .btn-enquire{flex:1;background:linear-gradient(135deg,#25d366,#20b954);color:#fff;border:none;border-radius:10px;padding:11px 14px;font-weight:700;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.15s;}
+    .btn-enquire:hover{filter:brightness(1.08);}
+    .btn-call{background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:11px 14px;font-weight:700;font-size:13.5px;cursor:pointer;transition:.15s;}
+    .btn-call:hover{background:var(--brand);color:#fff;border-color:var(--brand);}
+
+    /* EMPTY / LOADING */
+    .state-box{text-align:center;padding:80px 20px;color:var(--muted);}
+    .state-box .icon{font-size:52px;margin-bottom:16px;}
+    .state-box h3{font-size:18px;font-weight:700;color:var(--text2);margin-bottom:8px;}
+    .state-box p{font-size:14px;}
+    .spinner{width:40px;height:40px;border:3px solid #e2e8f0;border-top-color:var(--brand);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* FOOTER */
+    .site-footer{background:var(--dark);color:#94a3b8;padding:48px 20px 28px;}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;}
+    .footer-brand h3{color:#fff;font-size:18px;font-weight:800;margin-bottom:8px;}
+    .footer-brand p{font-size:13.5px;line-height:1.7;}
+    .footer-col h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:14px;}
+    .footer-col p,.footer-col a{font-size:13.5px;display:block;margin-bottom:8px;color:#94a3b8;}
+    .footer-col a:hover{color:#fff;}
+    .footer-bottom{max-width:1200px;margin:32px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12.5px;}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .header-nav .btn-wa span{display:none;}
+      .footer-inner{grid-template-columns:1fr;}
+      .hero h1{font-size:28px;}
+      .stats-row{gap:20px;}
+    }
+    @media(max-width:480px){.catalog-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/catalog" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2m14 0h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><rect x="1" y="11" width="22" height="6" rx="1"/><path d="M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3"/></svg>
+      </div>
+      KM Car Deals
+    </a>
+    <nav class="header-nav">
+      <a href="/" style="font-size:13.5px;font-weight:600;color:var(--text2);margin-right:4px">Admin ↗</a>
+      <button class="btn-wa" id="headerWa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.97 0C5.352 0 0 5.353 0 11.97c0 2.1.55 4.075 1.506 5.788L.057 23.876l6.27-1.638A11.91 11.91 0 0 0 11.97 24C18.588 24 24 18.647 24 11.97 24 5.352 18.587 0 11.97 0zm0 21.818a9.85 9.85 0 0 1-5.027-1.371l-.36-.214-3.723.976.994-3.624-.235-.372A9.847 9.847 0 0 1 2.12 11.97c0-5.434 4.418-9.852 9.85-9.852 5.433 0 9.851 4.418 9.851 9.851 0 5.433-4.418 9.849-9.851 9.849z"/></svg>
+        <span>WhatsApp Us</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Find Your Perfect<br><span>Pre-Owned Car</span></h1>
+    <p>Quality certified vehicles at transparent prices. Kalaburagi's most trusted dealership.</p>
+    <div class="search-bar">
+      <input type="text" id="heroSearch" placeholder="Search make, model…"/>
+      <select id="fuelFilter">
+        <option value="">All Fuels</option>
+        <option value="DIESEL">Diesel</option>
+        <option value="PETROL">Petrol</option>
+        <option value="ELECTRIC">Electric</option>
+        <option value="CNG">CNG</option>
+      </select>
+      <button onclick="applyFilters()">🔍 Search</button>
+    </div>
+    <div class="stats-row" id="statsRow">
+      <div class="stat"><strong id="statTotal">—</strong><span>Vehicles in Stock</span></div>
+      <div class="stat"><strong id="statBrands">—</strong><span>Brands Available</span></div>
+      <div class="stat"><strong id="statCity">Kalaburagi</strong><span>Karnataka</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="fpill active" data-f="">All</button>
+    <button class="fpill" data-f="DIESEL">Diesel</button>
+    <button class="fpill" data-f="PETROL">Petrol</button>
+    <button class="fpill" data-f="ELECTRIC">Electric ⚡</button>
+    <button class="fpill" data-f="CNG">CNG</button>
+    <span class="filter-count" id="filterCount"></span>
+  </div>
+</div>
+
+<!-- CATALOG -->
+<section class="catalog-section">
+  <div class="catalog-grid" id="catalogGrid">
+    <div class="state-box"><div class="spinner"></div><p style="margin-top:16px">Loading vehicles…</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>KM Car Deals</h3>
+      <p id="footerAddress">Opp. Hyundai Showroom, Humnabad Road, Kapnoor,<br>Kalaburagi, Karnataka 585104</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#" id="footerPhone">Call Us</a>
+      <a href="#" id="footerWa">WhatsApp</a>
+      <a href="#" id="footerEmail">Email Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="/catalog">All Vehicles</a>
+      <a href="/">Admin Panel</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span id="footerBrand">© KM Car Deals</span>
+    <span>Powered by KM Car Deals AI</span>
+  </div>
+</footer>
+
+<script>
+var API="/api/v1";var allVehicles=[];var bizSettings={};var currentFuel="";
+
+function money(v){if(!v)return"Price on request";var n=Number(v);if(n>=10000000)return"₹"+(n/10000000).toFixed(2)+" Cr";if(n>=100000)return"₹"+(n/100000).toFixed(2)+" L";return"₹"+n.toLocaleString("en-IN");}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+
+function waLink(vehicle){
+  var num=(bizSettings.whatsapp_number||"").replace(/\D/g,"");
+  if(!num)return"https://wa.me/?text="+encodeURIComponent("Hi KM Car Deals");
+  var name=vehicle.vehicle_name||((vehicle.manufacturer||"")+" "+(vehicle.model||"")).trim()||"the vehicle";
+  var msg="Hello KM Car Deals, I am interested in the "+name+" (Stock: "+(vehicle.stock_id||"N/A")+") listed on your website. Please share availability, price and more details.";
+  return"https://wa.me/"+num+"?text="+encodeURIComponent(msg);
+}
+
+function renderVehicle(v){
+  var photos=v.photos||[];var main=photos.slice().sort(function(a,b){return(b.is_primary?1:0)-(a.is_primary?1:0);})[0];
+  var img=main?'<img src="'+esc(photoUrl(main))+'" alt="'+esc(v.vehicle_name||"")+'" loading="lazy">'
+    :'<div class="no-photo">🚗</div>';
+  var name=v.vehicle_name||((v.manufacturer||"")+" "+(v.model||"")).trim()||"Vehicle";
+  var fuel=v.fuel||v.fuel_type||"";
+  var yr=v.year||v.manufacturing_year||"";
+  var km=v.mileage_km?((v.mileage_km>=1000?(v.mileage_km/1000).toFixed(1)+"k":v.mileage_km)+" km"):"—";
+  var price=money(v.price||v.selling_price);
+  var desc=v.description?v.description.slice(0,120)+"…":"";
+  return'<div class="vcard">'
+    +'<div class="vcard-photo">'+img+'<div class="photo-overlay"></div>'
+    +(fuel?'<div class="vbadge">'+esc(fuel.toLowerCase())+'</div>':'')
+    +'</div>'
+    +'<div class="vcard-body">'
+      +'<div class="vname">'+esc(name)+'</div>'
+      +'<div class="vstockid">'+esc(v.stock_id||"")+'</div>'
+      +'<div class="vspecs">'
+        +'<div class="vspec"><div class="vspec-k">Year</div><div class="vspec-v">'+esc(yr||"—")+'</div></div>'
+        +'<div class="vspec"><div class="vspec-k">Fuel</div><div class="vspec-v">'+esc(fuel||"—")+'</div></div>'
+        +'<div class="vspec"><div class="vspec-k">KM</div><div class="vspec-v">'+esc(km)+'</div></div>'
+        +'<div class="vspec"><div class="vspec-k">Owners</div><div class="vspec-v">'+esc(v.owner_count||v.owner||"—")+'</div></div>'
+        +(v.transmission?'<div class="vspec"><div class="vspec-k">Trans.</div><div class="vspec-v">'+esc(v.transmission)+'</div></div>':"")
+        +(v.color||v.vehicle_color?'<div class="vspec"><div class="vspec-k">Colour</div><div class="vspec-v">'+esc(v.color||v.vehicle_color)+'</div></div>':"")
+      +'</div>'
+      +'<div class="vprice">'+price+'</div>'
+      +(desc?'<div class="vdesc">'+esc(desc)+'</div>':"")
+      +'<div class="vactions">'
+        +'<a class="btn-enquire" href="'+esc(waLink(v))+'" target="_blank" rel="noopener">💬 Enquire on WhatsApp</a>'
+        +(bizSettings.phone_primary?'<a class="btn-call" href="tel:'+esc(bizSettings.phone_primary)+'">📞 Call</a>':"")
+      +'</div>'
+    +'</div>'
+  +'</div>';
+}
+
+function photoUrl(p){var fp=p.file_path||p;return/^https?:/.test(fp)?fp:"/uploads/"+fp.replace(/^.*[\\/]data[\\/]uploads[\\/]/,"").replace(/\\/g,"/");}
+
+function paintGrid(vehicles){
+  var grid=document.getElementById("catalogGrid");
+  var fc=document.getElementById("filterCount");
+  if(!grid)return;
+  if(fc)fc.textContent=vehicles.length+" vehicle"+(vehicles.length!==1?"s":"")+" found";
+  if(!vehicles.length){grid.innerHTML='<div class="state-box"><div class="icon">🚗</div><h3>No vehicles found</h3><p>Try a different search or filter.</p></div>';return;}
+  grid.innerHTML=vehicles.map(renderVehicle).join("");
+}
+
+function applyFilters(){
+  var q=(document.getElementById("heroSearch")||{value:""}).value.trim().toLowerCase();
+  var fuel=currentFuel||(document.getElementById("fuelFilter")||{value:""}).value;
+  var filtered=allVehicles.filter(function(v){
+    if(fuel){var vf=(v.fuel||v.fuel_type||"").toUpperCase();if(vf!==fuel)return false;}
+    if(q){var name=(v.vehicle_name||v.model||"").toLowerCase();var mfr=(v.manufacturer||"").toLowerCase();if(!name.includes(q)&&!mfr.includes(q))return false;}
+    return true;
+  });
+  paintGrid(filtered);
+}
+
+// Filter pills
+document.querySelectorAll(".fpill").forEach(function(b){
+  b.addEventListener("click",function(){
+    document.querySelectorAll(".fpill").forEach(function(p){p.classList.remove("active");});
+    b.classList.add("active");currentFuel=b.dataset.f||"";applyFilters();
+  });
+});
+
+// Hero search enter
+var hs=document.getElementById("heroSearch");if(hs)hs.addEventListener("keydown",function(e){if(e.key==="Enter")applyFilters();});
+
+// Load business settings
+fetch(API+"/settings/business").then(function(r){return r.json();}).then(function(s){
+  bizSettings=s||{};
+  var fp=document.getElementById("footerPhone"),fw=document.getElementById("footerWa"),fe=document.getElementById("footerEmail"),fb=document.getElementById("footerBrand"),fa=document.getElementById("footerAddress"),hwb=document.getElementById("headerWa");
+  if(s.phone_primary&&fp){fp.href="tel:"+s.phone_primary;fp.textContent="📞 "+s.phone_primary;}
+  if(s.whatsapp_number&&fw){fw.href="https://wa.me/"+(s.whatsapp_number||"").replace(/\D/g,"");fw.textContent="💬 WhatsApp: "+s.whatsapp_number;}
+  if(s.email&&fe){fe.href="mailto:"+s.email;fe.textContent="✉ "+s.email;}
+  if(s.business_name&&fb){fb.textContent="© "+s.business_name+" "+new Date().getFullYear();}
+  if(s.address_line1&&fa){fa.innerHTML=(s.address_line1||"")+(s.address_line2?", "+s.address_line2:"")+"<br>"+(s.city||"")+", "+(s.state||"")+" "+(s.pincode||"");}
+  if(s.whatsapp_number&&hwb){hwb.onclick=function(){window.open("https://wa.me/"+(s.whatsapp_number||"").replace(/\D/g,"")+"?text="+encodeURIComponent("Hello KM Car Deals, I am interested in a car."),"_blank");};}
+  else if(hwb){hwb.style.display="none";}
+}).catch(function(){});
+
+// Load vehicles
+fetch(API+"/public/vehicles?limit=200").then(function(r){return r.json();}).then(function(data){
+  allVehicles=(Array.isArray(data)?data:[]);
+  // Stats
+  var statT=document.getElementById("statTotal"),statB=document.getElementById("statBrands");
+  if(statT)statT.textContent=allVehicles.length;
+  if(statB){var brands=new Set(allVehicles.map(function(v){return v.manufacturer||v.model||"";}));statB.textContent=brands.size;}
+  paintGrid(allVehicles);
+}).catch(function(){
+  var grid=document.getElementById("catalogGrid");
+  if(grid)grid.innerHTML='<div class="state-box"><div class="icon">⚠️</div><h3>Could not load vehicles</h3><p>Please check back soon.</p></div>';
+});
+</script>
+</body>
+</html>

@@ -213,6 +213,8 @@ class CarIntakeAgent:
         files: List[Tuple[bytes, str]],
         message: str = "",
         seller_whatsapp: Optional[str] = None,
+        referral: Optional[str] = None,
+        intake_source: Optional[str] = None,
     ) -> Tuple[Vehicle, List[str]]:
         """Persist files, coordinate specialist agents, return (vehicle, notices)."""
         notices: List[str] = []
@@ -318,10 +320,83 @@ class CarIntakeAgent:
                 )
             )
 
+        # Check for duplicate vehicle by registration number
+        duplicate_notice = self._check_duplicate(vehicle, notices)
+
+        # Build confidence summary across all extracted facts
+        self._build_confidence_summary(vehicle)
+
+        # Generate description (deterministic fallback if AI disabled)
+        if not vehicle.description:
+            try:
+                vehicle.description = inventory.generate_description(vehicle)
+            except Exception as exc:
+                logger.warning("Description generation failed: %s", exc)
+
+        # Determine next workflow status
+        has_open_conflicts = bool(inventory.open_conflicts(self.db, vehicle.vehicle_id))
+        has_review_fields = any(f.needs_review for f in vehicle.facts)
+        if has_open_conflicts or has_review_fields:
+            next_status = VehicleStatus.NEEDS_REVIEW.value
+        elif classifications["rc"]:
+            next_status = VehicleStatus.EXTRACTED.value
+        else:
+            next_status = VehicleStatus.AI_DRAFT.value
+        inventory.update_status(
+            self.db, vehicle.vehicle_id, next_status,
+            reason="Intake pipeline complete", actor="car_intake_agent"
+        )
+
+        # Audit log
+        from km_car_deals.services.audit import log_action
+        log_action(
+            self.db, actor="car_intake_agent", action="INTAKE_COMPLETE",
+            entity_type="Vehicle", entity_id=vehicle.vehicle_id,
+            after_data={
+                "status": next_status,
+                "facts": len(vehicle.facts),
+                "photos": len(vehicle.photos),
+                "conflicts": len(vehicle.conflicts),
+                "notices": notices,
+            },
+        )
+
         self.db.flush()
         return vehicle, notices
 
     # ---- helpers ----
+
+    def _check_duplicate(self, vehicle: Vehicle, notices: List[str]) -> Optional[Vehicle]:
+        """Check for a duplicate vehicle by registration number."""
+        reg = vehicle.registration_number
+        if not reg:
+            # Try facts
+            for f in vehicle.facts:
+                if f.field == "registration_number" and f.value:
+                    reg = f.value
+                    break
+        if reg:
+            dup = inventory.find_duplicate_by_registration(self.db, reg)
+            if dup and dup.vehicle_id != vehicle.vehicle_id:
+                notices.append(
+                    f"⚠ Possible duplicate: registration {reg} already exists "
+                    f"as stock {dup.stock_id} (status: {dup.status})."
+                )
+                return dup
+        return None
+
+    def _build_confidence_summary(self, vehicle: Vehicle) -> None:
+        """Compute per-field confidence and store on vehicle.ai_confidence_summary."""
+        summary: Dict[str, Any] = {}
+        for fact in vehicle.facts:
+            summary[fact.field] = {
+                "value": fact.value,
+                "confidence": fact.confidence,
+                "source": fact.source,
+                "needs_review": fact.needs_review,
+            }
+        vehicle.ai_confidence_summary = summary
+
     def _vehicle_create_from(self, info: Dict[str, Any]):
         from km_car_deals.schemas.vehicle import VehicleCreate
 

@@ -6,6 +6,13 @@ import enum
 
 
 class VehicleStatus(str, enum.Enum):
+    # AI Intake workflow statuses
+    AI_DRAFT = "AI_DRAFT"
+    EXTRACTED = "EXTRACTED"
+    NEEDS_REVIEW = "NEEDS_REVIEW"
+    DEALER_APPROVED = "DEALER_APPROVED"
+    PUBLISHED = "PUBLISHED"
+    # Legacy / operational statuses
     NEW = "NEW"
     PROCESSING = "PROCESSING"
     PENDING_REVIEW = "PENDING_REVIEW"
@@ -26,6 +33,8 @@ ACTIVE_SALE_STATUSES = {
     VehicleStatus.NEGOTIATION,
     VehicleStatus.RESERVED,
     VehicleStatus.READY_FOR_SALE,
+    VehicleStatus.PUBLISHED,
+    VehicleStatus.DEALER_APPROVED,
 }
 
 # Statuses that must never be advertised.
@@ -250,3 +259,30 @@ class SourceType(str, enum.Enum):
     DATABASE = "database"
     EXCEL = "excel"
     PHOTO = "photo"
+
+
+class ReferralSource(str, enum.Enum):
+    WALK_IN = "WALK_IN"
+    WHATSAPP = "WHATSAPP"
+    INSTAGRAM = "INSTAGRAM"
+    FACEBOOK = "FACEBOOK"
+    WEBSITE = "WEBSITE"
+    REFERENCE = "REFERENCE"
+    DEALER = "DEALER"
+    CUSTOMER = "CUSTOMER"
+    OTHER = "OTHER"
+
+
+class IntakeSource(str, enum.Enum):
+    ADMIN_UI = "ADMIN_UI"
+    WHATSAPP = "WHATSAPP"
+    VOICE = "VOICE"
+    EXCEL = "EXCEL"
+    API = "API"
+
+
+class ApprovalAction(str, enum.Enum):
+    APPROVE = "APPROVE"
+    REJECT = "REJECT"
+    REPROCESS = "REPROCESS"
+    PUBLISH = "PUBLISH"

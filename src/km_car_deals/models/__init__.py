@@ -1,6 +1,8 @@
 """ORM model package - imports all models so Alembic autogenerate can see them."""
 
 from km_car_deals.models.vehicle import (
+    AppAuditLog,
+    BusinessSettings,
     UploadedFileRecord,
     Vehicle,
     VehicleAuditLog,
@@ -28,6 +30,8 @@ from km_car_deals.models.customer import (
 from km_car_deals.models.catalog import SocialContent, WhatsAppCatalogEntry
 
 __all__ = [
+    "AppAuditLog",
+    "BusinessSettings",
     "UploadedFileRecord",
     "Vehicle",
     "VehicleAuditLog",

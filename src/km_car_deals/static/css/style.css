@@ -1722,3 +1722,24 @@ textarea.input { resize: vertical; min-height: 90px; }
   .main { margin-left: 0; }
   .content { padding: 0; }
 }
+
+/* ── Wizard steps ── */
+.wizard-steps{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;width:fit-content;}
+.wstep{padding:10px 24px;font-size:13px;font-weight:600;color:var(--text-muted);background:var(--surface);border-right:1px solid var(--border);}
+.wstep:last-child{border-right:none;}
+.wstep.active{background:var(--brand-primary);color:#fff;}
+
+/* ── Approval queue ── */
+.badge-AI_DRAFT{background:rgba(14,165,233,.12);color:#0ea5e9;}
+.badge-EXTRACTED{background:rgba(99,102,241,.12);color:#6366f1;}
+.badge-NEEDS_REVIEW{background:var(--warning-bg);color:var(--warning);}
+.badge-DEALER_APPROVED{background:var(--success-bg);color:var(--success);}
+.badge-PUBLISHED{background:rgba(249,115,22,.15);color:var(--brand-primary);}
+.badge-CLOSED_LOST,.badge-CLOSED_WON,.badge-INTERESTED,.badge-QUALIFIED,.badge-NEGOTIATING,.badge-FOLLOW_UP,.badge-BOOKED,.badge-PURCHASED,.badge-NOT_INTERESTED{background:var(--surface-3);color:var(--text-2);}
+
+/* ── Success btn ── */
+.btn-success{background:var(--success-bg);color:var(--success);border-color:transparent;}
+.btn-success:hover{filter:brightness(1.08);}
+
+/* ── Settings form ── */
+.sett-field{margin-bottom:0;}
