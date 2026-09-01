@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "km-car-deals"
+version = "0.1.0"
+description = "KM Car Deals - AI Sales, Inventory & Customer CRM Agent"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "orjson>=3.9",
+    "sqlalchemy>=2.0",
+    "alembic>=1.13",
+    "psycopg2-binary>=2.9",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "python-dotenv>=1.0",
+    "httpx>=0.27",
+    "python-multipart>=0.0.9",
+    "openpyxl>=3.1",
+    "pillow>=10.2",
+    "pypdf>=4.0",
+    "pytesseract>=0.3.10",
+    "pydantic-core",
+    "tenacity>=8.2",
+    "python-jose[cryptography]>=3.3",
+    "passlib[bcrypt]>=1.7.4",
+    "email-validator>=2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "httpx>=0.27",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["src"]
+testpaths = ["tests"]
