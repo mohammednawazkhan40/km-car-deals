@@ -1,104 +1,90 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>KM Car Deals — Dealership OS</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/css/style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-inner">
-        <div class="brand">
-          <div class="brand-logo">
-            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="36" height="36" rx="10" fill="url(#brandGrad)"/>
-              <path d="M7 24l4-8h14l4 8H7z" fill="white" fill-opacity=".95"/>
-              <circle cx="12" cy="24" r="2.5" fill="#0a0f1a"/>
-              <circle cx="24" cy="24" r="2.5" fill="#0a0f1a"/>
-              <path d="M11 20l2-4h10l2 4H11z" fill="white" fill-opacity=".6"/>
-              <defs><linearGradient id="brandGrad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#f97316"/><stop offset="1" stop-color="#ea580c"/></linearGradient></defs>
-            </svg>
-          </div>
-          <div class="brand-text"><strong>KM Car Deals</strong><span>Dealership OS v2</span></div>
-          <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
+<div class="app-shell">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="url(#bg)"/><path d="M7 24l4-8h14l4 8H7z" fill="white" fill-opacity=".95"/><circle cx="12" cy="24" r="2.5" fill="#0a0f1a"/><circle cx="24" cy="24" r="2.5" fill="#0a0f1a"/><path d="M11 20l2-4h10l2 4H11z" fill="white" fill-opacity=".6"/><defs><linearGradient id="bg" x1="0" y1="0" x2="36" y2="36"><stop stop-color="#f97316"/><stop offset="1" stop-color="#ea580c"/></linearGradient></defs></svg>
         </div>
-        <div class="sidebar-search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="text" placeholder="Quick search…" id="globalSearch" autocomplete="off" />
-        </div>
-        <nav class="nav">
-          <div class="nav-group-label">Main</div>
-          <a href="#" class="nav-item active" data-view="dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="nav-label">Dashboard</span><span class="nav-badge" id="nb-dashboard"></span></a>
-          <a href="#" class="nav-item" data-view="inventory"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 3h22l-2 9H3L1 3z"/><circle cx="9" cy="20" r="1.5"/><circle cx="16" cy="20" r="1.5"/></svg></span><span class="nav-label">Inventory</span><span class="nav-badge" id="nb-inventory"></span></a>
-          <a href="#" class="nav-item" data-view="intake"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></span><span class="nav-label">AI Intake</span></a>
-          <div class="nav-group-label" style="margin-top:8px">CRM</div>
-          <a href="#" class="nav-item" data-view="customers"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav-label">Customers</span><span class="nav-badge" id="nb-customers"></span></a>
-          <a href="#" class="nav-item" data-view="leads"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span class="nav-label">Leads</span></a>
-          <div class="nav-group-label" style="margin-top:8px">Reports</div>
-          <a href="#" class="nav-item" data-view="analytics"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span><span class="nav-label">Analytics</span></a>
-          <a href="#" class="nav-item" data-view="docs"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span><span class="nav-label">API Docs</span></a>
-        </nav>
-        <div class="sidebar-foot">
-          <div class="user-card">
-            <div class="user-avatar">KM</div>
-            <div class="user-info"><strong>Admin</strong><span id="apiStatus" class="status-chip"><span class="dot"></span>Demo Mode</span></div>
-            <button class="theme-toggle" id="themeToggle" title="Toggle theme">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-            </button>
-          </div>
+        <div class="brand-text"><strong>KM Car Deals</strong><span>Dealership OS</span></div>
+        <button class="sidebar-close" id="sidebarClose">✕</button>
+      </div>
+      <div class="sidebar-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Quick search…" id="globalSearch" autocomplete="off"/>
+      </div>
+      <nav class="nav">
+        <div class="nav-group-label">Main</div>
+        <a href="#" class="nav-item active" data-view="dashboard"><span class="nav-icon">📊</span><span class="nav-label">Dashboard</span><span class="nav-badge" id="nb-dashboard"></span></a>
+        <a href="#" class="nav-item" data-view="inventory"><span class="nav-icon">🚗</span><span class="nav-label">Inventory</span><span class="nav-badge" id="nb-inventory"></span></a>
+        <a href="#" class="nav-item" data-view="intake"><span class="nav-icon">⚡</span><span class="nav-label">AI Intake</span></a>
+        <a href="#" class="nav-item" data-view="approval"><span class="nav-icon">✅</span><span class="nav-label">Approval Queue</span><span class="nav-badge" id="nb-approval"></span></a>
+        <div class="nav-group-label" style="margin-top:8px">CRM</div>
+        <a href="#" class="nav-item" data-view="customers"><span class="nav-icon">👥</span><span class="nav-label">Customers</span></a>
+        <a href="#" class="nav-item" data-view="leads"><span class="nav-icon">📞</span><span class="nav-label">Leads</span></a>
+        <div class="nav-group-label" style="margin-top:8px">Reports</div>
+        <a href="#" class="nav-item" data-view="analytics"><span class="nav-icon">📈</span><span class="nav-label">Analytics</span></a>
+        <a href="#" class="nav-item" data-view="audit"><span class="nav-icon">📋</span><span class="nav-label">Audit Log</span></a>
+        <a href="#" class="nav-item" data-view="settings"><span class="nav-icon">⚙️</span><span class="nav-label">Settings</span></a>
+        <a href="#" class="nav-item" data-view="docs"><span class="nav-icon">📖</span><span class="nav-label">API Docs</span></a>
+        <div class="nav-group-label" style="margin-top:8px">Public</div>
+        <a href="/catalog" target="_blank" class="nav-item"><span class="nav-icon">🌐</span><span class="nav-label">Website Catalog ↗</span></a>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="user-card">
+          <div class="user-avatar">KM</div>
+          <div class="user-info"><strong>Admin</strong><span id="apiStatus" class="status-chip"><span class="dot"></span>Connecting…</span></div>
+          <button class="theme-toggle" id="themeToggle" title="Toggle theme">☀</button>
         </div>
       </div>
-    </aside>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <main class="main" id="main">
-      <header class="topbar" id="topbar">
-        <div class="topbar-left">
-          <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-          </button>
-          <div class="breadcrumb">
-            <span class="bc-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="bc-sep"><path d="m9 18 6-6-6-6"/></svg>
-            <span class="bc-current" id="pageTitle">Dashboard</span>
-          </div>
-        </div>
-        <div class="topbar-right">
-          <button class="topbar-icon-btn" id="refreshBtn" title="Refresh">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
-          </button>
-          <button class="topbar-icon-btn" title="Notifications">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span class="notif-dot"></span>
-          </button>
-          <button class="btn btn-primary btn-sm" data-goto="intake">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-            Add Vehicle
-          </button>
-        </div>
-      </header>
-      <section class="content" id="content"></section>
-    </main>
-  </div>
-  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
-  <div class="modal-backdrop" id="modalBackdrop" hidden>
-    <div class="modal" id="modal" role="dialog" aria-modal="true">
-      <div class="modal-header">
-        <h2 class="modal-title" id="modalTitle">Details</h2>
-        <button class="modal-close" id="modalClose" aria-label="Close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <div class="modal-body" id="modalBody"></div>
     </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- MAIN -->
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div class="breadcrumb">
+          <span class="bc-home">🏠</span>
+          <span class="bc-sep">›</span>
+          <span class="bc-current" id="pageTitle">Dashboard</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="topbar-icon-btn" id="refreshBtn" title="Refresh">↺</button>
+        <button class="btn btn-primary btn-sm" data-goto="intake">＋ Add Vehicle</button>
+      </div>
+    </header>
+    <section class="content" id="content"></section>
+  </main>
+</div>
+
+<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Details</h2>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
   </div>
-  <script src="js/app.js"></script>
+</div>
+
+<script src="/static/js/app.js"></script>
 </body>
 </html>
